@@ -1,0 +1,27 @@
+--
+1. Copy the Jar: Using FTP
+2. Create appropriate directory at user home directory 
+3. Create HDFS folder -
+	
+	hdfs dfs -mkdir hdfs_filesystem/custommapcounter
+	hdfs dfs -mkdir hdfs_filesystem/custommapcounter/input
+	
+	hdfs dfs -ls hdfs_filesystem/custommapcounter
+	hdfs dfs -ls hdfs_filesystem/custommapcounter/input
+	
+	
+4. Put the file- 
+
+	hdfs dfs -copyFromLocal hadoop/artifacts/counter_inputdata  hdfs_filesystem/custommapcounter/input
+	
+5.Run the JAR
+    
+    hadoop jar hadoop/jars/hadoop-mapreduce-practice.jar 
+    com.practice.bigdata.hadoop.mapreduce.advance.counter.CustomMapJobCounter
+    hdfs_filesystem/custommapcounter/input 
+    hdfs_filesystem/custommapcounter/output
+    
+
+    hdfs dfs -ls hdfs_filesystem/custommapcounter/output
+    hdfs dfs -cat hdfs_filesystem/custommapcounter/output/part-m-00000
+    

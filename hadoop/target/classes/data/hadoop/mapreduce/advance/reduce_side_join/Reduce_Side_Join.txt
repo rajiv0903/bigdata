@@ -1,0 +1,30 @@
+--
+1. Copy the Jar: Using FTP
+2. Create appropriate directory at user home directory 
+3. Create HDFS folder -
+	
+	hdfs dfs -mkdir hdfs_filesystem/totaltransaction
+	hdfs dfs -mkdir hdfs_filesystem/totaltransaction/input
+	hdfs dfs -mkdir hdfs_filesystem/totaltransaction/input/customer
+	hdfs dfs -mkdir hdfs_filesystem/totaltransaction/input/transaction
+	
+	hdfs dfs -ls hdfs_filesystem/totaltransaction/input/customer
+	hdfs dfs -ls hdfs_filesystem/totaltransaction/input/transaction
+	
+	
+4. Put the file- 
+
+	hdfs dfs -copyFromLocal hadoop/artifacts/customer_transactions hdfs_filesystem/totaltransaction/input/transaction
+	hdfs dfs -copyFromLocal hadoop/artifacts/customers hdfs_filesystem/totaltransaction/input/customer
+	
+5.Run the JAR
+    
+    hadoop jar hadoop/jars/hadoop-mapreduce-practice.jar com.practice.bigdata.hadoop.mapreduce.advance.reduce_side_join.CustomerTotalTransactionDriver
+    hdfs_filesystem/totaltransaction/input/customer 
+    hdfs_filesystem/totaltransaction/input/transaction
+    hdfs_filesystem/totaltransaction/output
+    
+
+    hdfs dfs -ls hdfs_filesystem/totaltransaction/output
+    hdfs dfs -cat hdfs_filesystem/totaltransaction/output/part-r-00000
+    

@@ -1,0 +1,29 @@
+--
+1. Copy the Jar: Using FTP
+2. Create appropriate directory at user home directory 
+3. Create HDFS folder -
+	
+	hdfs dfs -mkdir hdfs_filesystem/employeedepartment
+	hdfs dfs -mkdir hdfs_filesystem/employeedepartment/input
+	
+	hdfs dfs -ls hdfs_filesystem/employeedepartment
+	hdfs dfs -ls hdfs_filesystem/employeedepartment/input
+	
+	
+4. Put the file- 
+
+	hdfs dfs -copyFromLocal hadoop/artifacts/employee_partitioning_data  hdfs_filesystem/employeedepartment/input
+	
+5.Run the JAR
+    
+    hadoop jar hadoop/jars/hadoop-mapreduce-practice.jar 
+    com.practice.bigdata.hadoop.mapreduce.advance.partitioner.DepartmentMaxSalaryHolders
+    hdfs_filesystem/employeedepartment/input 
+    hdfs_filesystem/employeedepartment/output
+    
+
+    hdfs dfs -ls hdfs_filesystem/employeedepartment/output
+    hdfs dfs -cat hdfs_filesystem/employeedepartment/output/part-r-00000
+    hdfs dfs -cat hdfs_filesystem/employeedepartment/output/part-r-00001
+    hdfs dfs -cat hdfs_filesystem/employeedepartment/output/part-r-00002
+    

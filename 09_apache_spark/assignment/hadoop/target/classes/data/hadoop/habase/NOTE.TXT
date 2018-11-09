@@ -1,0 +1,11 @@
+
+-> HBase = HBase Master + HBase Region + HBase Client
+-> HBase Master: Maintaining the Performance and Performance of the Nodes in cluster, assigns different 
+	regions to Region Server, It maintains the metadata
+-> Client always makes the communication through Zookeeper
+-> Running Modes:
+	Standalone Mode
+	Pseudo-Distributed Mode
+	Fully Distributed Mode
+-> HBase Shell & Utilities:
+	

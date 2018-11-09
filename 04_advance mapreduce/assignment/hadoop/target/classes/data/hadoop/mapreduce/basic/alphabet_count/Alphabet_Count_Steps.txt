@@ -1,0 +1,31 @@
+--
+1. Copy the Jar: Using FTP
+2. Create appropriate directory at user home directory 
+3. Create HDFS folder -
+
+	/user/edureka_424232/hdfs_filesystem/alphacount/input
+	/user/edureka_424232/hdfs_filesystem/alphacount/output
+	
+	hdfs dfs -mkdir hdfs_filesystem/alphacount
+	hdfs dfs -mkdir hdfs_filesystem/alphacount/input
+	hdfs dfs -mkdir hdfs_filesystem/alphacount/input_small
+	
+	hdfs dfs -ls hdfs_filesystem/alphacount/input
+	hdfs dfs -ls hdfs_filesystem/alphacount/input_small
+	
+	
+4. Put the file- 
+	hdfs put --from /mnt/home/edureka_424232/hadoop/artifacts/alphabets.txt 
+	--to /user/edureka_424232/hdfs_filesystem/alphacount/input
+	
+	hdfs dfs -copyFromLocal hadoop/artifacts/alphabets.txt hdfs_filesystem/alphacount/input
+	hdfs dfs -copyFromLocal hadoop/artifacts/alphabets_small.txt hdfs_filesystem/alphacount/input_small
+	
+5.Run the JAR
+    
+    hadoop jar hadoop/jars/hadoop-mapreduce-practice.jar com.practice.bigdata.hadoop.mapreduce.basic.alphabet_count.AlphabetCountDriver hdfs_filesystem/alphacount/input_small hdfs_filesystem/alphacount/output
+    hadoop jar hadoop/jars/hadoop-mapreduce-practice.jar com.practice.bigdata.hadoop.mapreduce.basic.alphabet_count.AlphabetCountDriver hdfs_filesystem/alphacount/input hdfs_filesystem/alphacount/output
+    
+    hdfs dfs -ls hdfs_filesystem/alphacount/output
+    hdfs dfs -cat hdfs_filesystem/alphacount/output/part-r-00000
+    

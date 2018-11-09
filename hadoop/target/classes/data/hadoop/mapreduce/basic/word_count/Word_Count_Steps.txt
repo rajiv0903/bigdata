@@ -1,0 +1,29 @@
+--
+1. Copy the Jar: Using FTP
+2. Create appropriate directory at user home directory 
+3. Create HDFS folder -
+	/user/edureka_424232/hdfs_filesystem/wordcount/input
+	/user/edureka_424232/hdfs_filesystem/wordcount/output
+	
+	hdfs dfs -mkdir hdfs_filesystem/wordcount
+	hdfs dfs -mkdir hdfs_filesystem/wordcount/input
+	hdfs dfs -mkdir hdfs_filesystem/wordcount/input_small
+	
+	hdfs dfs -ls hdfs_filesystem/wordcount/input
+	hdfs dfs -ls hdfs_filesystem/wordcount/input_small
+	
+	
+4. Put the file- 
+	hdfs put --from /mnt/home/edureka_424232/hadoop/artifacts/wordcountproblem 
+	--to /user/edureka_424232/hdfs_filesystem/wordcount/input
+	
+	hdfs dfs -copyFromLocal hadoop/artifacts/wordcountproblem hdfs_filesystem/wordcount/input
+	hdfs dfs -copyFromLocal hadoop/artifacts/wordcountproblem_small hdfs_filesystem/wordcount/input_small
+	
+5.Run the JAR
+
+	hadoop jar hadoop/jars/hadoop-mapreduce-practice.jar com.practice.bigdata.hadoop.mapreduce.basic.word_count.WordCountDriver hdfs_filesystem/wordcount/input_small hdfs_filesystem/wordcount/output
+    hadoop jar hadoop/jars/hadoop-mapreduce-practice.jar com.practice.bigdata.hadoop.mapreduce.basic.word_count.WordCountDriver hdfs_filesystem/wordcount/input hdfs_filesystem/wordcount/output
+    
+    hdfs dfs -ls hdfs_filesystem/wordcount/output
+    hdfs dfs -cat hdfs_filesystem/wordcount/output/part-r-00000

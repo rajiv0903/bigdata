@@ -1,0 +1,24 @@
+--
+1. Copy the Jar: Using FTP
+2. Create appropriate directory at user home directory 
+3. Create HDFS folder -
+	/user/edureka_424232/spark_filesystem/wordcount/scala/input
+	/user/edureka_424232/spark_filesystem/wordcount/scala/output
+	
+	hdfs dfs -mkdir spark_filesystem
+	hdfs dfs -mkdir spark_filesystem/wordcount
+	hdfs dfs -mkdir spark_filesystem/wordcount/scala
+	hdfs dfs -mkdir spark_filesystem/wordcount/scala/input
+	hdfs dfs -mkdir spark_filesystem/wordcount/scala/input_small
+	hdfs dfs -mkdir spark_filesystem/wordcount/python
+	hdfs dfs -mkdir spark_filesystem/wordcount/python/input
+	hdfs dfs -mkdir spark_filesystem/wordcount/python/input_small
+	
+	hdfs dfs -ls spark_filesystem/wordcount/input
+	hdfs dfs -ls spark_filesystem/wordcount/input_small
+	
+4. Put the file- 	
+	hdfs dfs -copyFromLocal spark/artifacts/wordcountproblem spark_filesystem/wordcount/scala/input
+	hdfs dfs -copyFromLocal spark/artifacts/wordcountproblem_small spark_filesystem/wordcount/scala/input_small
+	hdfs dfs -copyFromLocal spark/artifacts/wordcountproblem spark_filesystem/wordcount/python/input
+	hdfs dfs -copyFromLocal spark/artifacts/wordcountproblem_small spark_filesystem/wordcount/python/input_small

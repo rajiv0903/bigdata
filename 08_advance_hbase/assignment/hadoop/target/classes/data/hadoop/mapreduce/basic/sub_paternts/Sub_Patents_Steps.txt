@@ -1,0 +1,29 @@
+--
+1. Copy the Jar: Using FTP
+2. Create appropriate directory at user home directory 
+3. Create HDFS folder -
+	/user/edureka_424232/hdfs_filesystem/subpatents/input
+	/user/edureka_424232/hdfs_filesystem/subpatents/output
+	
+	hdfs dfs -mkdir hdfs_filesystem/subpatents
+	hdfs dfs -mkdir hdfs_filesystem/subpatents/input
+	hdfs dfs -mkdir hdfs_filesystem/subpatents/input_small
+	
+	hdfs dfs -ls hdfs_filesystem/subpatents/input
+	hdfs dfs -ls hdfs_filesystem/subpatents/input_small
+	
+4. Put the file- 
+	hdfs put --from /mnt/home/edureka_424232/hadoop/artifacts/patent 
+	--to /user/edureka_424232/hdfs_filesystem/subpatents/input
+	
+	hdfs dfs -copyFromLocal hadoop/artifacts/patent hdfs_filesystem/subpatents/input
+	hdfs dfs -copyFromLocal hadoop/artifacts/patent_small hdfs_filesystem/subpatents/input_small
+	
+5.Run the JAR
+
+	hadoop jar hadoop/jars/hadoop-mapreduce-practice.jar com.practice.bigdata.hadoop.mapreduce.basic.sub_paternts.SubPatentsDriver hdfs_filesystem/subpatents/input_small hdfs_filesystem/subpatents/output
+    hadoop jar hadoop/jars/hadoop-mapreduce-practice.jar com.practice.bigdata.hadoop.mapreduce.basic.sub_paternts.SubPatentsDriver hdfs_filesystem/subpatents/input hdfs_filesystem/subpatents/output
+    
+    hdfs dfs -ls hdfs_filesystem/subpatents/output
+    hdfs dfs -cat hdfs_filesystem/subpatents/output/part-r-00000
+    

@@ -1,0 +1,79 @@
+-----------------------------------------------------------------------------------------------------------
+-- Create Customer Table with Info CF
+-----------------------------------------------------------------------------------------------------------
+create 'rc_customers', 'info'
+
+-----------------------------------------------------------------------------------------------------------
+-- Copy File to HDFS
+-----------------------------------------------------------------------------------------------------------
+hdfs dfs -copyFromLocal hbase/artifacts/customer_hbase  hbase_filesystem/customer/input
+
+-----------------------------------------------------------------------------------------------------------
+-- Load the Data from HDFS File System to Output Directory using seperator
+-- -Dimporttsv.separator=, specifies that the separator is a comma.
+-- -Dimporttsv.bulk.output=output is a relative path to where the HFiles will be written. 
+--  Since your user on the VM is “cloudera” by default, 
+--  it means the files will be in /user/cloudera/output. 
+--  Skipping this option will make the job write directly to HBase.
+-----------------------------------------------------------------------------------------------------------
+HADOOP_CLASSPATH=`${HBASE_HOME}/bin/hbase classpath` hadoop jar 
+/opt/cloudera/parcels/CDH/lib/hbase/hbase-server-1.2.0-cdh5.11.1.jar 
+importtsv -Dimporttsv.separator=, 
+-Dimporttsv.bulk.output=hbase_filesystem/customer/output 
+-Dimporttsv.columns=HBASE_ROW_KEY,info:fname,info:lname,info:age,info:prof 
+rc_customers 
+hbase_filesystem/customer/input/customer_hbase
+
+-----------------------------------------------------------------------------------------------------------
+-- Load from Output HDFS to HBase Shell
+-----------------------------------------------------------------------------------------------------------
+HADOOP_CLASSPATH=`${HBASE_HOME}/bin/hbase classpath` hadoop 
+jar /opt/cloudera/parcels/CDH/lib/hbase/hbase-server-1.2.0-cdh5.11.1.jar 
+completebulkload hbase_filesystem/customer/output rc_customers
+
+-----------------------------------------------------------------------------------------------------------
+-- Scan Table
+-----------------------------------------------------------------------------------------------------------
+scan 'rc_customers'
+get 'rc_customers', '4005000' 
+-----------------------------------------------------------------------------------------------------------
+-- Scan Table
+-----------------------------------------------------------------------------------------------------------
+java -cp 
+.:/opt/cloudera/parcels/CDH/lib/hbase/lib/*
+:/opt/cloudera/parcels/CDH/lib/hadoop/lib/*
+:/opt/cloudera/parcels/CDH/lib/hadoop/client/*
+:/mnt/home/edureka_424232/hbase/jars/bigdata-practice.jar
+ com.practice.bigdata.hadoop.habase.advance.GetCustomer
+ ip-20-0-21-196.ec2.internal 2181 ip-20-0-21-196.ec2.internal:60000
+ 
+ java -cp 
+.:/opt/cloudera/parcels/CDH/lib/hbase/lib/*
+:/opt/cloudera/parcels/CDH/lib/hadoop/lib/*
+:/opt/cloudera/parcels/CDH/lib/hadoop/client/*
+:/mnt/home/edureka_424232/hbase/jars/bigdata-practice.jar
+ com.practice.bigdata.hadoop.habase.advance.GetFilterCustomer
+ ip-20-0-21-196.ec2.internal 2181 ip-20-0-21-196.ec2.internal:60000
+ 
+ 
+ java -cp 
+.:/opt/cloudera/parcels/CDH/lib/hbase/lib/*
+:/opt/cloudera/parcels/CDH/lib/hadoop/lib/*
+:/opt/cloudera/parcels/CDH/lib/hadoop/client/*
+:/mnt/home/edureka_424232/hbase/jars/bigdata-practice.jar
+ com.practice.bigdata.hadoop.habase.advance.InsertOrUpdateCustomer
+ ip-20-0-21-196.ec2.internal 2181 ip-20-0-21-196.ec2.internal:60000
+ 
+  java -cp 
+.:/opt/cloudera/parcels/CDH/lib/hbase/lib/*
+:/opt/cloudera/parcels/CDH/lib/hadoop/lib/*
+:/opt/cloudera/parcels/CDH/lib/hadoop/client/*
+:/mnt/home/edureka_424232/hbase/jars/bigdata-practice.jar
+ com.practice.bigdata.hadoop.habase.advance.FamilyFilterExample
+ 
+ ----------------------------------------------------------------------------------------------------------
+--Drop Table
+----------------------------------------------------------------------------------------------------------
+exists 'rc_customers'
+disable 'rc_customers'
+drop 'rc_customers'

@@ -1,0 +1,36 @@
+Two input files- 
+Map Side Join (Small Data Set) 
+Reduce Side Join
+Distributed Data Cache
+
+Custom - 
+Key, 
+Value, 
+Record Reader
+
+Pig:
+select
+group by 
+filter
+store
+describe
+
+
+Default location of Hive:
+/usr/hive/warehouse/db
+
+create database <dbname>;
+use dbname;
+show tables;
+describe tablename;
+describe extended tablename;
+show databases;
+Internal and External table tablename; For external - the data has to be there 
+create tables txrecords (..)
+row format delimited
+fields terminated by ','
+lines terminated by '\n'
+stored as textfile;
+
+Load data from Local to Hive - File Copy
+Load data from HDFS file system to Hive - File move

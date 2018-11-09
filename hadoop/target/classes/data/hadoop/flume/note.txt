@@ -1,0 +1,10 @@
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Flume: Apache Flume is a distributed, reliable, and available software for efficiently collecting, 
+aggregating, and moving large amounts of log data. It has a simple and flexible architecture based 
+on streaming data flows.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Flume Agents:
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Source 
+Channel
+Sink

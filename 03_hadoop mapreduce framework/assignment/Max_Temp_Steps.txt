@@ -1,0 +1,23 @@
+--
+1. Copy the Jar: Using FTP
+2. Create appropriate directory at user home directory 
+3. Create HDFS folder -
+	/user/edureka_424232/hdfs_filesystem/maxtemp/input
+	/user/edureka_424232/hdfs_filesystem/maxtemp/output
+	
+	hdfs dfs -mkdir hdfs_filesystem/maxtemp
+	hdfs dfs -mkdir hdfs_filesystem/maxtemp/input
+	
+	hdfs dfs -ls hdfs_filesystem/maxtemp/input
+	
+	
+4. Put the file- 
+	hdfs put --from /mnt/home/edureka_424232/hadoop/artifacts/Temperature
+	--to /user/edureka_424232/hdfs_filesystem/maxtemp/input
+	hdfs dfs -copyFromLocal /mnt/home/edureka_424232/hadoop/artifacts/Temperature hdfs_filesystem/maxtemp/input
+	
+5.Run the JAR
+    hadoop jar hadoop/jars/hadoop-mapreduce-practice.jar com.practice.bigdata.hadoop.max_temp.MaxTempDriver hdfs_filesystem/maxtemp/input hdfs_filesystem/maxtemp/output
+    
+    hdfs dfs -ls hdfs_filesystem/maxtemp/output
+    hdfs dfs -cat hdfs_filesystem/maxtemp/output/part-r-00000

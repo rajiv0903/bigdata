@@ -1,0 +1,29 @@
+--
+1. Copy the Jar: Using FTP
+2. Create appropriate directory at user home directory 
+3. Create HDFS folder -
+	/user/edureka_424232/hdfs_filesystem/hotcoldday/input
+	/user/edureka_424232/hdfs_filesystem/hotcoldday/output
+	
+	hdfs dfs -mkdir hdfs_filesystem/hotcoldday
+	hdfs dfs -mkdir hdfs_filesystem/hotcoldday/input
+	hdfs dfs -mkdir hdfs_filesystem/hotcoldday/input_small
+	
+	hdfs dfs -ls hdfs_filesystem/hotcoldday/input
+	hdfs dfs -ls hdfs_filesystem/hotcoldday/input_small
+	
+4. Put the file- 
+	hdfs put --from /mnt/home/edureka_424232/hadoop/artifacts/Temperature
+	--to /user/edureka_424232/hdfs_filesystem/hotcoldday/input
+	
+	hdfs dfs -copyFromLocal hadoop/artifacts/WeatherData.txt hdfs_filesystem/hotcoldday/input
+	hdfs dfs -copyFromLocal hadoop/artifacts/WeatherData_small.txt hdfs_filesystem/hotcoldday/input_small
+	
+5.Run the JAR
+    
+    hadoop jar hadoop/jars/hadoop-mapreduce-practice.jar com.practice.bigdata.hadoop.mapreduce.basic.hot_cold_day.HotColdDayDriver hdfs_filesystem/hotcoldday/input_small hdfs_filesystem/hotcoldday/output
+	hadoop jar hadoop/jars/hadoop-mapreduce-practice.jar com.practice.bigdata.hadoop.mapreduce.basic.hot_cold_day.HotColdDayDriver hdfs_filesystem/hotcoldday/input hdfs_filesystem/hotcoldday/output
+	
+	hdfs dfs -ls hdfs_filesystem/hotcoldday/output
+    hdfs dfs -cat hdfs_filesystem/hotcoldday/output/part-r-00000
+      

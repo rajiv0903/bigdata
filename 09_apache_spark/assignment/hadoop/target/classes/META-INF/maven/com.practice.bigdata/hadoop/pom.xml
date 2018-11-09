@@ -1,0 +1,130 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.practice.bigdata</groupId>
+	<artifactId>hadoop</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Hadoop MapReduce Example</name>
+	<description>Hadoop MapReduce Example</description>
+
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<slf4j.version>1.7.25</slf4j.version>
+		<logback.version>1.2.3</logback.version>
+		<hadoop-common-version>2.2.0</hadoop-common-version>
+		<hadoop-mapreduce-client-core-version>2.2.0</hadoop-mapreduce-client-core-version>
+		<pig-version>0.15.0</pig-version>
+		<hive-exec-version>2.2.0</hive-exec-version>
+		<hbase-client-version>2.1.0</hbase-client-version>
+		<hbase-client-legacy-version>1.2.0</hbase-client-legacy-version>
+		<hbase-rest-version>1.4.2</hbase-rest-version>
+	</properties>
+
+	<!-- <repositories> <repository> <snapshots> <enabled>false</enabled> </snapshots> 
+		<id>central</id> <name>Maven Repository Switchboard</name> <url>http://repo1.maven.org/maven2</url> 
+		</repository> <repository> <id>cloudera</id> <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url> 
+		</repository> </repositories> -->
+
+	<dependencies>
+		<!-- For JUnit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Logger -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<!-- Hadoop Common and Map-Reduce Client -->
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-common</artifactId>
+			<version>${hadoop-common-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-mapreduce-client-core</artifactId>
+			<version>${hadoop-mapreduce-client-core-version}</version>
+		</dependency>
+
+		<!-- For Pig -->
+		<dependency>
+			<groupId>org.apache.pig</groupId>
+			<artifactId>pig</artifactId>
+			<version>${pig-version}</version>
+		</dependency>
+
+		<!-- For Hive -->
+		<dependency>
+			<groupId>org.apache.hive</groupId>
+			<artifactId>hive-exec</artifactId>
+			<version>${hive-exec-version}</version>
+		</dependency>
+
+		<!-- For HBase -->
+		<dependency>
+			<groupId>org.apache.hbase</groupId>
+			<artifactId>hbase-client</artifactId>
+			<version>${hbase-client-version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- For HBase: Backward Compatibility - <dependency> <groupId>org.apache.hbase</groupId> 
+			<artifactId>hbase-client</artifactId> <version>${hbase-client-legacy-version}</version> 
+			<scope>compile</scope> </dependency> --> 
+			
+		<!-- For HBase Rest -->
+		<dependency>
+			<groupId>org.apache.hbase</groupId>
+			<artifactId>hbase-rest</artifactId>
+			<version>${hbase-rest-version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+
+		<!-- Description Resource Path Location Type: Missing artifact jdk.tools:jdk.tools:jar:1.6 -->
+		<dependency>
+			<groupId>jdk.tools</groupId>
+			<artifactId>jdk.tools</artifactId>
+			<version>1.8.0_181</version>
+			<scope>system</scope>
+			<systemPath>${JAVA_HOME}/lib/tools.jar</systemPath>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<!-- <finalName>hadoop-mapreduce-practice</finalName> -->
+		<finalName>bigdata-practice</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+				</configuration>
+			</plugin>
+			<!-- Make this jar executable -->
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-jar-plugin</artifactId> 
+				<configuration> <excludes> <exclude>**/log4j.properties</exclude> </excludes> 
+				<archive> <manifest> <mainClass>com.practice.bigdata.hadoop.word_count.WordCountDriver</mainClass> 
+				</manifest> </archive> </configuration> </plugin> -->
+		</plugins>
+	</build>
+
+</project>

@@ -1,0 +1,24 @@
+//Import Data from MS SQL Server to HDFS //
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+sqoop import --driver com.microsoft.sqlserver.jdbc.SqlServerDriver 
+	--connect jdbc:sqlserver://10.0.13.143:1433/hadoop --table employee --username root -P -target-dir
+	/sqoop_out/employee -m l;
+	
+//Export Data from HDFS to MS SQL Server//
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+sqoop export --driver com.microsoft.sqlserver.jdbc.SqlServerDriver 
+	--connect jdbc:sqlserver://10.0.13.143:1433/hadoop --table employee --username root -P --export-dir /
+
+
+//Import Data from MS SQL Server to Hive //
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+sqoop import --driver com.microsoft.sqlserver.jdbc.SqlServerDriver 
+	--connect jdbc:sqlserver://10.0.13.143:1433/hadoop --table employee --username root -P -m l --hive -import;
+	
+
+//Import Data from MS SQL Server to HBase //
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+create table 'employee' 'info'
+sqoop import --driver com.microsoft.sqlserver.jdbc.SqlServerDriver 
+	--connect jdbc:sqlserver://10.0.13.143:1433/hadoop --table employee --username root -P--hbase
+	-table employee --column-family -info --hbase-row-key Empid --hbase-create-table -m l;

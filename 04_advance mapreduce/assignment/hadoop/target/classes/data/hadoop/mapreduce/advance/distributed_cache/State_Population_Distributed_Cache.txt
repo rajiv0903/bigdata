@@ -1,0 +1,31 @@
+--
+1. Copy the Jar: Using FTP
+2. Create appropriate directory at user home directory 
+3. Create HDFS folder -
+	
+	hdfs dfs -mkdir hdfs_filesystem/ditributedcache
+	hdfs dfs -mkdir hdfs_filesystem/ditributedcache/input
+	hdfs dfs -mkdir hdfs_filesystem/ditributedcache/cache
+	
+	hdfs dfs -ls hdfs_filesystem/ditributedcache
+	hdfs dfs -ls hdfs_filesystem/ditributedcache/input
+	hdfs dfs -ls hdfs_filesystem/ditributedcache/cache
+	
+	
+4. Put the file- 
+
+	hdfs dfs -copyFromLocal hadoop/artifacts/state_lookup.dat  hdfs_filesystem/ditributedcache/cache
+	hdfs dfs -copyFromLocal hadoop/artifacts/state_population.dat  hdfs_filesystem/ditributedcache/input
+	
+5.Run the JAR
+    
+    hadoop jar hadoop/jars/hadoop-mapreduce-practice.jar 
+    com.practice.bigdata.hadoop.mapreduce.advance.distributed_cache.StatePopulation
+    hdfs_filesystem/ditributedcache/input 
+    hdfs_filesystem/ditributedcache/output
+    hdfs_filesystem/ditributedcache/cache/state_lookup.dat
+    
+
+    hdfs dfs -ls hdfs_filesystem/ditributedcache/output
+    hdfs dfs -cat hdfs_filesystem/ditributedcache/output/part-m-00000
+    

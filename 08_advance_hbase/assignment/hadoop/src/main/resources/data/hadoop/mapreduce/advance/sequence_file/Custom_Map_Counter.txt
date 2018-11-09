@@ -1,0 +1,39 @@
+--
+1. Copy the Jar: Using FTP
+2. Create appropriate directory at user home directory 
+3. Create HDFS folder -
+	
+	hdfs dfs -mkdir hdfs_filesystem/sequencefile
+	hdfs dfs -mkdir hdfs_filesystem/sequencefile/input
+	
+	hdfs dfs -ls hdfs_filesystem/sequencefile
+	hdfs dfs -ls hdfs_filesystem/sequencefile/input
+	hdfs dfs -ls hdfs_filesystem/sequencefile/images
+	
+	
+4. Put the file- 
+
+	hdfs dfs -copyFromLocal hadoop/artifacts/image_data  hdfs_filesystem/sequencefile/input
+	
+	Put the Images:
+	-----------------
+	hdfs dfs -copyFromLocal hadoop/artifacts/images  hdfs_filesystem/sequencefile
+	
+5.Run the JAR
+    
+    hadoop jar hadoop/jars/hadoop-mapreduce-practice.jar 
+    com.practice.bigdata.hadoop.mapreduce.advance.sequence_file.BinaryFilesToHadoopSequenceFile
+    hdfs_filesystem/sequencefile/input 
+    hdfs_filesystem/sequencefile/binaryimages
+    
+    hdfs dfs -ls hdfs_filesystem/sequencefile/binaryimages
+    hdfs dfs -cat hdfs_filesystem/sequencefile/binaryimages/part-r-00000
+    
+    hadoop jar hadoop/jars/hadoop-mapreduce-practice.jar 
+    com.practice.bigdata.hadoop.mapreduce.advance.sequence_file.ImageDriver
+    hdfs_filesystem/sequencefile/binaryimages/part-r-00000
+    hdfs_filesystem/sequencefile/output
+    
+    hdfs dfs -ls hdfs_filesystem/sequencefile/output
+    hdfs dfs -cat hdfs_filesystem/sequencefile/output/part-r-00000
+    

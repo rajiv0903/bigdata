@@ -1,0 +1,4 @@
+Big Data and Hadoop training course is designed to provide knowledge and skills to become a successful Hadoop Developer. In-depth knowledge of concepts such as Hadoop Distributed File System, Hadoop Cluster, Map-Reduce, Hbase Zookeeper etc. will be covered in the course.
+Course Objectives
+After the completion of the Hadoop Course at Edureka, you should be able to:
+Master the concepts of Hadoop Distributed File System.
